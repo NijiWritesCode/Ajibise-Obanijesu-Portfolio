@@ -45,7 +45,7 @@ export default function Button({
       backgroundColor: 'var(--accent)',
       color: 'var(--accent-text)',
       border: '1px solid var(--accent)',
-      boxShadow: '0 4px 20px rgba(204, 255, 0, 0.25)',
+      boxShadow: '0 4px 20px rgba(255, 59, 48, 0.28)',
     },
     secondary: {
       backgroundColor: 'rgba(255, 255, 255, 0.05)',
@@ -89,9 +89,9 @@ export default function Button({
   const hoverHandlers = {
     onMouseEnter: (e) => {
       if (variant === 'primary') {
-        e.currentTarget.style.backgroundColor = '#d8ff33';
+        e.currentTarget.style.backgroundColor = '#ff5247';
         e.currentTarget.style.transform = 'translateY(-2px)';
-        e.currentTarget.style.boxShadow = '0 8px 28px rgba(204, 255, 0, 0.4)';
+        e.currentTarget.style.boxShadow = '0 8px 28px rgba(255, 59, 48, 0.45)';
       } else if (variant === 'secondary') {
         e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
         e.currentTarget.style.borderColor = 'var(--text-primary)';
@@ -111,7 +111,7 @@ export default function Button({
       if (variant === 'primary') {
         e.currentTarget.style.backgroundColor = 'var(--accent)';
         e.currentTarget.style.transform = 'translateY(0)';
-        e.currentTarget.style.boxShadow = '0 4px 20px rgba(204, 255, 0, 0.25)';
+        e.currentTarget.style.boxShadow = '0 4px 20px rgba(255, 59, 48, 0.28)';
       } else if (variant === 'secondary') {
         e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
         e.currentTarget.style.borderColor = 'var(--border-medium)';

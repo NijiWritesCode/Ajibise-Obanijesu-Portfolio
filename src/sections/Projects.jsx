@@ -333,7 +333,7 @@ export default function Projects() {
                       fontSize: '0.75rem',
                       padding: '0.4rem 0.85rem',
                       borderRadius: '6px',
-                      backgroundColor: 'rgba(204, 255, 0, 0.08)',
+                      backgroundColor: 'var(--accent-dim)',
                       border: '1px solid var(--accent-border)',
                       color: 'var(--accent)',
                       fontWeight: '500',

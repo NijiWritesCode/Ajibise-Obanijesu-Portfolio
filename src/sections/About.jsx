@@ -184,7 +184,7 @@ export default function About() {
                   width: '38px',
                   height: '38px',
                   borderRadius: '10px',
-                  backgroundColor: 'rgba(204, 255, 0, 0.1)',
+                  backgroundColor: 'var(--accent-dim)',
                   border: '1px solid var(--accent-border)',
                   display: 'flex',
                   alignItems: 'center',

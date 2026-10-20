@@ -572,7 +572,7 @@ export default function Hero() {
           width: clamp(340px, 45vw, 640px);
           height: clamp(340px, 45vw, 640px);
           border-radius: 50%;
-          background: radial-gradient(circle, rgba(239, 68, 68, 0.65) 0%, rgba(249, 115, 22, 0.38) 38%, rgba(204, 255, 0, 0.05) 70%, transparent 88%);
+          background: radial-gradient(circle, rgba(239, 68, 68, 0.65) 0%, rgba(249, 115, 22, 0.38) 38%, rgba(255, 59, 48, 0.08) 70%, transparent 88%);
           filter: blur(55px);
           pointer-events: none;
           z-index: 1;

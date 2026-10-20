@@ -276,7 +276,7 @@ export default function Contact() {
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.borderColor = 'var(--accent-border)';
-                  e.currentTarget.style.backgroundColor = 'rgba(204, 255, 0, 0.05)';
+                  e.currentTarget.style.backgroundColor = 'var(--accent-dim)';
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.borderColor = 'var(--border-subtle)';
@@ -315,7 +315,7 @@ export default function Contact() {
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.borderColor = 'var(--accent-border)';
-                  e.currentTarget.style.backgroundColor = 'rgba(204, 255, 0, 0.05)';
+                  e.currentTarget.style.backgroundColor = 'var(--accent-dim)';
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.borderColor = 'var(--border-subtle)';

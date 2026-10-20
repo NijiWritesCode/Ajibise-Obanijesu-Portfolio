@@ -69,7 +69,7 @@ export default function Skills() {
               <div
                 key={group.category}
                 style={{
-                  backgroundColor: isFrontend ? 'rgba(204, 255, 0, 0.03)' : 'var(--bg-secondary)',
+                  backgroundColor: isFrontend ? 'var(--accent-dim)' : 'var(--bg-secondary)',
                   border: isFrontend
                     ? '1px solid var(--accent-border)'
                     : '1px solid var(--border-subtle)',
@@ -163,10 +163,10 @@ export default function Skills() {
                           padding: '0.75rem 1rem',
                           borderRadius: '10px',
                           backgroundColor: isCoreFocus
-                            ? 'rgba(204, 255, 0, 0.08)'
+                            ? 'var(--accent-dim)'
                             : 'rgba(255, 255, 255, 0.02)',
                           border: isCoreFocus
-                            ? '1px solid rgba(204, 255, 0, 0.28)'
+                            ? '1px solid var(--accent-border)'
                             : '1px solid var(--border-subtle)',
                         }}
                       >
@@ -198,7 +198,7 @@ export default function Skills() {
                               fontFamily: 'var(--font-mono)',
                               fontSize: '0.65rem',
                               color: 'var(--accent)',
-                              backgroundColor: 'rgba(204, 255, 0, 0.12)',
+                              backgroundColor: 'var(--accent-dim)',
                               padding: '2px 6px',
                               borderRadius: '4px',
                               letterSpacing: '0.04em',

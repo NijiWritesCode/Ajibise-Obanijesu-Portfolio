@@ -4,7 +4,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
 import Navbar from './components/Navbar';
 import ScrollProgress from './components/ScrollProgress';
-import CustomCursor from './components/CustomCursor';
 import Hero from './sections/Hero';
 import Projects from './sections/Projects';
 import About from './sections/About';
@@ -68,9 +67,6 @@ export default function App() {
     <div className="portfolio-app-root">
       {/* Top Scroll Indicator */}
       <ScrollProgress />
-
-      {/* Magnetic Desktop Cursor */}
-      <CustomCursor />
 
       {/* Main Navigation Bar */}
       <Navbar />
