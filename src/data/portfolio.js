@@ -13,10 +13,13 @@ export const PERSONAL_INFO = {
   
   // Configurable email placeholder (Update when final production inbox is ready)
   email: 'obanijesu.solomon.dev@gmail.com',
+  phone: '09011263971',
+  whatsapp: 'https://wa.me/2349011263971',
   
   socials: {
     github: 'https://github.com/NijiWritesCode',
     x: 'https://x.com/NijiWritesCode',
+    whatsapp: 'https://wa.me/2349011263971',
   },
   
   bio: {

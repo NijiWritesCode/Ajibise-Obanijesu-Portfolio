@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
-import { Mail, ArrowUpRight, Copy, Check, ArrowUp, Github, Sparkles } from 'lucide-react';
+import { Mail, ArrowUpRight, Copy, Check, ArrowUp, Github, Sparkles, MessageCircle } from 'lucide-react';
 import Button from '../components/Button';
 import { PERSONAL_INFO } from '../data/portfolio';
 import { useReducedMotion } from '../hooks/useReducedMotion';
@@ -198,8 +198,18 @@ export default function Contact() {
 
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', alignItems: 'center' }}>
               <Button
-                href={`mailto:${PERSONAL_INFO.email}`}
+                href={PERSONAL_INFO.whatsapp}
+                target="_blank"
                 variant="primary"
+                size="lg"
+                icon={true}
+              >
+                Chat on WhatsApp
+              </Button>
+
+              <Button
+                href={`mailto:${PERSONAL_INFO.email}`}
+                variant="secondary"
                 size="lg"
                 icon={true}
               >
@@ -258,6 +268,45 @@ export default function Contact() {
             </span>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              {/* WhatsApp Link */}
+              <a
+                href={PERSONAL_INFO.whatsapp}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  padding: '1rem',
+                  borderRadius: '12px',
+                  backgroundColor: 'rgba(255, 255, 255, 0.03)',
+                  border: '1px solid var(--border-subtle)',
+                  color: 'var(--text-primary)',
+                  transition: 'all var(--transition-fast)',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = 'var(--accent-border)';
+                  e.currentTarget.style.backgroundColor = 'var(--accent-dim)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = 'var(--border-subtle)';
+                  e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.03)';
+                }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                  <MessageCircle size={18} color="var(--accent)" />
+                  <div>
+                    <span style={{ fontSize: '0.95rem', fontWeight: '600', display: 'block' }}>
+                      WhatsApp Direct
+                    </span>
+                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--text-muted)' }}>
+                      +234 901 126 3971
+                    </span>
+                  </div>
+                </div>
+                <ArrowUpRight size={16} />
+              </a>
+
               {/* GitHub Link */}
               <a
                 href={PERSONAL_INFO.socials.github}

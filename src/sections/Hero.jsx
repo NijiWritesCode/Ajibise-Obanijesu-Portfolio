@@ -476,8 +476,9 @@ export default function Hero() {
               </Button>
 
               <Button
-                href="#contact"
-                onClick={(e) => handleScrollTo(e, 'contact')}
+                href={PERSONAL_INFO.whatsapp}
+                target="_blank"
+                rel="noopener noreferrer"
                 variant="secondary"
                 size="md"
               >

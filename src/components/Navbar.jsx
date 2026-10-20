@@ -211,10 +211,11 @@ export default function Navbar() {
             })}
           </div>
 
-          {/* Quick Contact CTA */}
+          {/* Quick Contact CTA -> WhatsApp */}
           <a
-            href="#contact"
-            onClick={(e) => handleNavClick(e, '#contact')}
+            href={PERSONAL_INFO.whatsapp}
+            target="_blank"
+            rel="noopener noreferrer"
             style={{
               fontFamily: 'var(--font-mono)',
               fontSize: '0.8rem',
@@ -230,6 +231,7 @@ export default function Navbar() {
               gap: '0.4rem',
               fontWeight: '600',
               transition: 'all var(--transition-fast)',
+              textDecoration: 'none',
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.backgroundColor = 'var(--accent)';
@@ -331,6 +333,33 @@ export default function Navbar() {
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+            {/* WhatsApp Mobile CTA */}
+            <a
+              href={PERSONAL_INFO.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMobileMenuOpen(false)}
+              style={{
+                fontFamily: 'var(--font-mono)',
+                fontSize: '0.82rem',
+                letterSpacing: '0.05em',
+                textTransform: 'uppercase',
+                padding: '0.85rem 1.25rem',
+                borderRadius: '8px',
+                backgroundColor: 'var(--accent)',
+                color: 'var(--accent-text)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '0.5rem',
+                fontWeight: '700',
+                textDecoration: 'none',
+              }}
+            >
+              <span>Let&apos;s Talk on WhatsApp</span>
+              <ArrowUpRight size={16} />
+            </a>
+
             <div
               style={{
                 display: 'flex',
