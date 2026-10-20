@@ -45,10 +45,13 @@ export default function Hero() {
         gsap.set(metaElements, { y: 20, opacity: 0 });
         gsap.set(subtextRef.current, { y: 24, opacity: 0 });
         gsap.set(ctaButtons, { y: 20, opacity: 0 });
-        gsap.set(portraitRef.current, { y: 40, opacity: 0, scale: 0.94 });
-        gsap.set(portraitGlowRef.current, { scale: 0.7, opacity: 0, xPercent: -50, yPercent: -50 });
+        // [PORTRAIT TEMPLATE - UNCOMMENT TO RESTORE PORTRAIT ANIMATION]
+        // if (portraitRef.current) gsap.set(portraitRef.current, { y: 40, opacity: 0, scale: 0.94 });
+        // if (portraitGlowRef.current) gsap.set(portraitGlowRef.current, { scale: 0.7, opacity: 0, xPercent: -50, yPercent: -50 });
         gsap.set(disciplineItems, { y: 20, opacity: 0 });
-        gsap.set(scrollIndicatorRef.current, { opacity: 0, y: -10 });
+        if (scrollIndicatorRef.current) {
+          gsap.set(scrollIndicatorRef.current, { opacity: 0, y: -10 });
+        }
 
         // Stage B: Coordinated Entrance
         const tl = gsap.timeline({
@@ -56,53 +59,38 @@ export default function Hero() {
           delay: 0.15,
         });
 
-        // 1. Radiant glow and portrait glide up
+        // 1. Headline reveals through clipping masks
         tl.to(
-          portraitGlowRef.current,
+          headlineLines,
           {
-            scale: 1,
+            yPercent: 0,
             opacity: 1,
-            xPercent: -50,
-            yPercent: -50,
-            duration: 1.2,
-            ease: 'power2.out',
+            duration: 1.05,
+            stagger: 0.12,
+            ease: 'power4.out',
           },
-          0
+          0.1
+        );
+
+        // [PORTRAIT ENTRANCE TEMPLATE - UNCOMMENT TO RESTORE PORTRAIT ENTRANCE]
+        // if (portraitGlowRef.current) {
+        //   tl.to(portraitGlowRef.current, { scale: 1, opacity: 1, xPercent: -50, yPercent: -50, duration: 1.2, ease: 'power2.out' }, 0);
+        // }
+        // if (portraitRef.current) {
+        //   tl.to(portraitRef.current, { y: 0, opacity: 1, scale: 1, duration: 1.1, ease: 'power3.out' }, 0.1);
+        // }
+
+        // 2. Metadata, manifesto, and CTAs stagger in
+        tl.to(
+          metaElements,
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.6,
+            stagger: 0.08,
+          },
+          0.3
         )
-          .to(
-            portraitRef.current,
-            {
-              y: 0,
-              opacity: 1,
-              scale: 1,
-              duration: 1.1,
-              ease: 'power3.out',
-            },
-            0.1
-          )
-          // 2. Headline reveals through clipping masks
-          .to(
-            headlineLines,
-            {
-              yPercent: 0,
-              opacity: 1,
-              duration: 1.05,
-              stagger: 0.12,
-              ease: 'power4.out',
-            },
-            0.2
-          )
-          // 3. Metadata, manifesto, and CTAs stagger in
-          .to(
-            metaElements,
-            {
-              y: 0,
-              opacity: 1,
-              duration: 0.6,
-              stagger: 0.08,
-            },
-            0.4
-          )
           .to(
             subtextRef.current,
             {
@@ -132,8 +120,10 @@ export default function Hero() {
               stagger: 0.08,
             },
             0.7
-          )
-          .to(
+          );
+
+        if (scrollIndicatorRef.current) {
+          tl.to(
             scrollIndicatorRef.current,
             {
               opacity: 1,
@@ -142,6 +132,7 @@ export default function Hero() {
             },
             0.8
           );
+        }
 
         // Stage D: Scroll-linked transition into the Project Showcase
         const scrollTl = gsap.timeline({
@@ -154,17 +145,12 @@ export default function Hero() {
           },
         });
 
+        // [PORTRAIT SCROLL TEMPLATE - UNCOMMENT TO RESTORE PORTRAIT SCROLL]
+        // if (portraitRef.current) {
+        //   scrollTl.to(portraitRef.current, { y: 80, scale: 0.95, opacity: 0.25, ease: 'none' }, 0);
+        // }
+
         scrollTl
-          .to(
-            portraitRef.current,
-            {
-              y: 80,
-              scale: 0.95,
-              opacity: 0.25,
-              ease: 'none',
-            },
-            0
-          )
           .to(
             headlineRef.current,
             {
@@ -201,8 +187,10 @@ export default function Hero() {
               ease: 'none',
             },
             0
-          )
-          .to(
+          );
+
+        if (scrollIndicatorRef.current) {
+          scrollTl.to(
             scrollIndicatorRef.current,
             {
               opacity: 0,
@@ -210,6 +198,7 @@ export default function Hero() {
             },
             0
           );
+        }
       });
 
       return () => mm.revert();
@@ -375,7 +364,7 @@ export default function Hero() {
                   letterSpacing: '-0.04em',
                   textTransform: 'uppercase',
                   color: 'transparent',
-                  WebkitTextStroke: '1.75px rgba(245, 245, 247, 0.95)',
+                  WebkitTextStroke: '2px rgba(245, 245, 247, 0.95)',
                   textShadow: '0 4px 24px rgba(0, 0, 0, 0.95)',
                 }}
               >
@@ -384,50 +373,55 @@ export default function Hero() {
             </div>
 
             <div className="text-mask-wrapper">
-              <h1
-                className="hero-headline-line hero-title-word"
-                style={{
-                  fontSize: 'clamp(2.4rem, 5.8vw, 5.8rem)',
-                  fontWeight: '800',
-                  lineHeight: 0.95,
-                  letterSpacing: '-0.04em',
-                  textTransform: 'uppercase',
-                  color: 'var(--text-primary)',
-                  display: 'inline-block',
-                  textShadow: '0 4px 24px rgba(0, 0, 0, 0.95)',
-                }}
-              >
-                EXPERIENCES
-              </h1>
-              <span
-                className="hero-headline-line hero-title-word"
-                style={{
-                  fontSize: 'clamp(2.4rem, 5.8vw, 5.8rem)',
-                  fontWeight: '800',
-                  color: 'var(--accent)',
-                  lineHeight: 0.95,
-                  letterSpacing: '-0.04em',
-                  display: 'inline-block',
-                  textShadow: '0 0 25px var(--accent)',
-                }}
-              >
-                .
+              <span style={{ display: 'inline-flex', alignItems: 'baseline', whiteSpace: 'nowrap' }}>
+                <h1
+                  className="hero-headline-line hero-title-word"
+                  style={{
+                    fontSize: 'clamp(2.4rem, 5.8vw, 5.8rem)',
+                    fontWeight: '800',
+                    lineHeight: 0.95,
+                    letterSpacing: '-0.04em',
+                    textTransform: 'uppercase',
+                    color: 'var(--text-primary)',
+                    display: 'inline-block',
+                    textShadow: '0 4px 24px rgba(0, 0, 0, 0.95)',
+                  }}
+                >
+                  EXPERIENCES
+                </h1>
+                <span
+                  className="hero-headline-line hero-title-word"
+                  style={{
+                    fontSize: 'clamp(2.4rem, 5.8vw, 5.8rem)',
+                    fontWeight: '800',
+                    color: 'var(--accent)',
+                    lineHeight: 0.95,
+                    letterSpacing: '-0.04em',
+                    display: 'inline-block',
+                    textShadow: '0 0 25px var(--accent)',
+                  }}
+                >
+                  .
+                </span>
               </span>
             </div>
           </div>
 
-          {/* Centerpiece / Background Portrait Stage */}
+          {/* ======================================================================
+              [PORTRAIT TEMPLATE - COMMENTED OUT]
+              Uncomment the block below whenever you wish to restore the studio
+              portrait and radiant halo. All CSS rules & GSAP templates are preserved.
+              ====================================================================== */}
+          {/*
           <div ref={portraitRef} className="hero-portrait-stage">
-            {/* Radiant halo directly behind portrait head & shoulders */}
             <div ref={portraitGlowRef} className="hero-portrait-glow" />
-
-            {/* Subject Cutout Image */}
             <img
               src="/portrait.png"
               alt={PERSONAL_INFO.name}
               className="hero-portrait-img"
             />
           </div>
+          */}
 
           {/* Right Column: Supporting Manifesto & CTAs */}
           <div className="hero-manifesto-column">
@@ -541,6 +535,30 @@ export default function Hero() {
             </div>
           ))}
         </div>
+
+        {/* Subtle scroll indicator */}
+        <div
+          ref={scrollIndicatorRef}
+          className="hero-scroll-indicator"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '0.5rem',
+            paddingTop: '1.5rem',
+            paddingBottom: '0.25rem',
+            color: 'var(--text-dim)',
+            fontFamily: 'var(--font-mono)',
+            fontSize: '0.74rem',
+            letterSpacing: '0.1em',
+            textTransform: 'uppercase',
+            position: 'relative',
+            zIndex: 10,
+          }}
+        >
+          <ArrowDown size={14} style={{ color: 'var(--accent)' }} />
+          <span>Scroll to explore projects</span>
+        </div>
       </div>
 
       {/* Responsive media rules across Desktop, Tablet, and Mobile */}
@@ -586,8 +604,13 @@ export default function Hero() {
           .hero-headline-column {
             position: relative;
             z-index: 10;
-            max-width: clamp(360px, 46vw, 620px);
-            flex: 1 1 50%;
+            max-width: min(720px, calc(100% - 410px));
+            flex: 1 1 auto;
+          }
+          .hero-headline-column h1,
+          .hero-headline-column .hero-title-word {
+            font-size: clamp(2.2rem, 3.8vw, 4.2rem) !important;
+            line-height: 0.94 !important;
           }
           .hero-portrait-stage {
             position: absolute;
@@ -644,20 +667,22 @@ export default function Hero() {
             min-height: auto !important;
           }
           .hero-editorial-overlay {
-            display: grid !important;
-            grid-template-columns: 1.15fr 0.85fr !important;
+            display: flex !important;
+            flex-direction: column !important;
             gap: 2rem !important;
-            align-items: center !important;
+            align-items: flex-start !important;
             margin: 1.5rem 0 !important;
             position: relative !important;
           }
           .hero-headline-column {
             order: 1 !important;
             max-width: 100% !important;
+            width: 100% !important;
           }
-          .hero-headline-column h1 {
-            font-size: clamp(2rem, 4.5vw, 3.2rem) !important;
-            line-height: 1.0 !important;
+          .hero-headline-column h1,
+          .hero-headline-column .hero-title-word {
+            font-size: clamp(2.8rem, 6.2vw, 4.4rem) !important;
+            line-height: 0.95 !important;
           }
           .hero-portrait-stage {
             order: 2 !important;
@@ -684,8 +709,7 @@ export default function Hero() {
             filter: blur(45px) !important;
           }
           .hero-manifesto-column {
-            order: 3 !important;
-            grid-column: 1 / -1 !important;
+            order: 2 !important;
             max-width: 100% !important;
             margin: 0 !important;
             backdrop-filter: blur(8px) !important;
@@ -693,6 +717,11 @@ export default function Hero() {
             padding: 1.5rem !important;
             border-radius: 14px !important;
             border: 1px solid rgba(255, 255, 255, 0.08) !important;
+          }
+          /* When portrait stage template is uncommented, manifesto spans across beneath it */
+          .hero-portrait-stage ~ .hero-manifesto-column {
+            grid-column: 1 / -1 !important;
+            order: 3 !important;
           }
           .hero-disciplines-bar {
             display: grid !important;
@@ -722,12 +751,14 @@ export default function Hero() {
           .hero-headline-column {
             order: 1 !important;
             max-width: 100% !important;
+            width: 100% !important;
             text-align: left !important;
           }
-          .hero-headline-column h1 {
-            font-size: clamp(1.65rem, 7.5vw, 2.25rem) !important;
-            line-height: 1.0 !important;
-            letter-spacing: -0.03em !important;
+          .hero-headline-column h1,
+          .hero-headline-column .hero-title-word {
+            font-size: clamp(1.4rem, 6.7vw, 2.2rem) !important;
+            line-height: 0.96 !important;
+            letter-spacing: -0.035em !important;
           }
           .hero-portrait-stage {
             order: 2 !important;
