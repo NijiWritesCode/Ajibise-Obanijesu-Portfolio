@@ -1,9 +1,10 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
 import Navbar from './components/Navbar';
 import ScrollProgress from './components/ScrollProgress';
+import LinkTreeModal from './components/LinkTreeModal';
 import Hero from './sections/Hero';
 import Projects from './sections/Projects';
 import About from './sections/About';
@@ -16,6 +17,11 @@ gsap.registerPlugin(ScrollTrigger);
 export default function App() {
   const prefersReduced = useReducedMotion();
   const lenisRef = useRef(null);
+  const [isLinkTreeOpen, setIsLinkTreeOpen] = useState(false);
+
+  const handleOpenContact = () => {
+    setIsLinkTreeOpen(true);
+  };
 
   useEffect(() => {
     // If user prefers reduced motion, disable Lenis and rely on standard browser scrolling
@@ -69,12 +75,12 @@ export default function App() {
       <ScrollProgress />
 
       {/* Main Navigation Bar */}
-      <Navbar />
+      <Navbar onOpenContact={handleOpenContact} />
 
       {/* Page Sections */}
       <main id="main-content">
         {/* Section 1: Typography-Led Hero Entrance */}
-        <Hero />
+        <Hero onOpenContact={handleOpenContact} />
 
         {/* Section 2: Pinned Move It Showcase & Secondary Projects */}
         <Projects />
@@ -87,7 +93,13 @@ export default function App() {
       </main>
 
       {/* Section 5: Cinematic Closing & Contact */}
-      <Contact />
+      <Contact onOpenContact={handleOpenContact} />
+
+      {/* Interactive LinkTree Modal (WhatsApp & Email hub) */}
+      <LinkTreeModal
+        isOpen={isLinkTreeOpen}
+        onClose={() => setIsLinkTreeOpen(false)}
+      />
     </div>
   );
 }

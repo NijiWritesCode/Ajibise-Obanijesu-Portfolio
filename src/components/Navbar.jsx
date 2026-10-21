@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
 import { PERSONAL_INFO, NAV_LINKS } from '../data/portfolio';
 
-export default function Navbar() {
+export default function Navbar({ onOpenContact }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
@@ -175,7 +175,14 @@ export default function Navbar() {
                 <a
                   key={link.label}
                   href={link.href}
-                  onClick={(e) => handleNavClick(e, link.href)}
+                  onClick={(e) => {
+                    if (link.label.toLowerCase() === 'contact') {
+                      e.preventDefault();
+                      onOpenContact?.();
+                    } else {
+                      handleNavClick(e, link.href);
+                    }
+                  }}
                   style={{
                     fontFamily: 'var(--font-mono)',
                     fontSize: '0.8rem',
@@ -211,11 +218,10 @@ export default function Navbar() {
             })}
           </div>
 
-          {/* Quick Contact CTA -> WhatsApp */}
-          <a
-            href={PERSONAL_INFO.whatsapp}
-            target="_blank"
-            rel="noopener noreferrer"
+          {/* Quick Contact CTA -> LinkTree Modal */}
+          <button
+            type="button"
+            onClick={() => onOpenContact?.()}
             style={{
               fontFamily: 'var(--font-mono)',
               fontSize: '0.8rem',
@@ -231,7 +237,7 @@ export default function Navbar() {
               gap: '0.4rem',
               fontWeight: '600',
               transition: 'all var(--transition-fast)',
-              textDecoration: 'none',
+              cursor: 'pointer',
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.backgroundColor = 'var(--accent)';
@@ -244,7 +250,7 @@ export default function Navbar() {
           >
             <span>Let&apos;s Talk</span>
             <ArrowUpRight size={14} />
-          </a>
+          </button>
         </nav>
 
         {/* Mobile Menu Button */}
@@ -305,7 +311,15 @@ export default function Navbar() {
               <a
                 key={link.label}
                 href={link.href}
-                onClick={(e) => handleNavClick(e, link.href)}
+                onClick={(e) => {
+                  if (link.label.toLowerCase() === 'contact') {
+                    e.preventDefault();
+                    setMobileMenuOpen(false);
+                    onOpenContact?.();
+                  } else {
+                    handleNavClick(e, link.href);
+                  }
+                }}
                 style={{
                   fontFamily: 'var(--font-display)',
                   fontSize: '2rem',
@@ -316,6 +330,7 @@ export default function Navbar() {
                   justifyContent: 'space-between',
                   borderBottom: '1px solid var(--border-subtle)',
                   paddingBottom: '1rem',
+                  cursor: 'pointer',
                 }}
               >
                 <span>{link.label}</span>
@@ -333,12 +348,13 @@ export default function Navbar() {
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-            {/* WhatsApp Mobile CTA */}
-            <a
-              href={PERSONAL_INFO.whatsapp}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => setMobileMenuOpen(false)}
+            {/* Let's Talk Mobile CTA -> Opens LinkTree Modal */}
+            <button
+              type="button"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                onOpenContact?.();
+              }}
               style={{
                 fontFamily: 'var(--font-mono)',
                 fontSize: '0.82rem',
@@ -353,12 +369,14 @@ export default function Navbar() {
                 justifyContent: 'center',
                 gap: '0.5rem',
                 fontWeight: '700',
-                textDecoration: 'none',
+                border: 'none',
+                cursor: 'pointer',
+                width: '100%',
               }}
             >
-              <span>Let&apos;s Talk on WhatsApp</span>
+              <span>Let&apos;s Talk</span>
               <ArrowUpRight size={16} />
-            </a>
+            </button>
 
             <div
               style={{

@@ -16,7 +16,7 @@ const DISCIPLINES = [
   { num: '04', title: 'System Performance', detail: 'Accessible, Fast & Resilient' },
 ];
 
-export default function Hero() {
+export default function Hero({ onOpenContact }) {
   const containerRef = useRef(null);
   const headlineRef = useRef(null);
   const subtextRef = useRef(null);
@@ -476,13 +476,11 @@ export default function Hero() {
               </Button>
 
               <Button
-                href={PERSONAL_INFO.whatsapp}
-                target="_blank"
-                rel="noopener noreferrer"
                 variant="secondary"
                 size="md"
+                onClick={() => onOpenContact?.()}
               >
-                Contact Me
+                Let&apos;s Talk
               </Button>
             </div>
           </div>
